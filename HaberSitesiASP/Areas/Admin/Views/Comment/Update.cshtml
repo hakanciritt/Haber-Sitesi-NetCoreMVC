@@ -1,0 +1,31 @@
+﻿@model Comment
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Güncelle</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" action="/Admin/Comment/Update">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label">Kullanıcı Adı</label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserComment" class="control-label">Yorum</label>
+                <input asp-for="UserComment" class="form-control" />
+                <span asp-validation-for="UserComment" class="text-danger"></span>
+            </div>
+            <input type="hidden" readonly asp-for="NewsId" class="form-control" />
+            <div class="form-group">
+                <input type="submit" value="Güncelle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

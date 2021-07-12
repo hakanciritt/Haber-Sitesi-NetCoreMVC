@@ -1,0 +1,28 @@
+﻿<!doctype html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div class="row">
+            <div class="col-3">
+                <div class="list-group bg-dark">
+                    <a href="/Admin/Home/Index" class="list-group-item list-group-item-action list-group-item-primary">Haberler</a>
+                    <a href="/Admin/Category/Index" class="list-group-item list-group-item-action list-group-item-primary">Kategoriler</a>
+                    <a href="/Admin/User/Index" class="list-group-item list-group-item-action list-group-item-primary">Kullanıcılar</a>
+                    <a href="/Admin/Comment/Index" class="list-group-item list-group-item-action list-group-item-primary">Yorumlar</a>
+                    <a target="_blank" asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action list-group-item-primary">Siteyi Görüntüle</a>
+                    <a href="/Admin/User/SignOut" class="list-group-item list-group-item-action list-group-item-primary">Çıkış</a>
+                </div>
+            </div>
+            <div class="col-9 my-2">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>

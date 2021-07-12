@@ -1,0 +1,82 @@
+﻿@model DetailListViewModel
+
+@{
+    ViewData["Title"] = "Category";
+}
+
+<div id="wrapper">
+    <div class="page-title lb single-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <h2><i class="fa fa-star bg-orange"></i> <a asp-controller="Home" asp-action="Index">Anasayfa</a> </h2>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">@ViewContext.RouteData.Values["Controller"]</a></li>
+                        <li class="breadcrumb-item"><a href="#">@ViewContext.RouteData.Values["Action"]</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    <div class="page-wrapper">
+                        <div class="blog-list clearfix">
+                            @foreach (var category in Model.Categories)
+                            {
+                                <div class="blog-box row">
+                                    <div class="col-md-4">
+                                        <div class="post-media">
+                                            <a href="tech-single.html" title="">
+                                                <img src="~/Resimler/@category.ImagePath" alt="" class="img-fluid">
+                                                <div class="hovereffect"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="blog-meta big-meta col-md-8">
+                                        <h4><a asp-controller="Home" asp-action="Detail" asp-route-id="@category.Id" title="">@category.Title</a></h4>
+                                        <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
+                                        <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title="">@category.CategoryName</a></small>
+                                        <small><a href="tech-single.html" title="">@category.Date.ToShortDateString()</a></small>
+                                    </div>
+                                </div>
+                                <hr class="invis">
+                            }
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                    <div class="sidebar">
+                        <div class="widget">
+                            <h3>Reklam alanları</h3>
+                            <div class="banner-spot clearfix">
+                                <div class="banner-img">
+                                    <img src="~/haber/upload/banner_07.jpg" alt="" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <div class="banner-spot clearfix">
+                                <div class="banner-img">
+                                    <img src="~/haber/upload/banner_03.jpg" alt="" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="dmtop">Scroll to Top</div>
+</div>
+
+

@@ -1,0 +1,38 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Kullanıcı Ekle</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" action="/Admin/User/Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label">Kullanıcı Adı</label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">Şifre</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Rol</label>
+                <select class="form-control">
+                    <option value="1">Editör</option>
+                    <option value="2">Admin</option>
+                    <option value="3">Kullanıcı</option>
+                    <option value="4">Yazar</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

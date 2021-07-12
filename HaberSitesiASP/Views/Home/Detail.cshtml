@@ -1,0 +1,149 @@
+﻿@model DetailListViewModel
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<section class="section single-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-wrapper">
+                    <div class="blog-title-area text-center">
+                        <ol class="breadcrumb hidden-xs-down">
+                            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">@ViewContext.RouteData.Values["Controller"]</a></li>
+                            <li class="breadcrumb-item">@ViewContext.RouteData.Values["Action"]</li>
+                            <li class="breadcrumb-item active">@Model.NewsDetail.Title</li>
+                        </ol>
+                        <span class="color-orange"><a href="tech-category-01.html" title="">@Model.NewsDetail.CategoryName</a></span>
+
+                        <h3>@Model.NewsDetail.Title</h3>
+
+                        <div class="blog-meta big-meta">
+                            <small><a href="tech-single.html" title="">@Model.NewsDetail.Date.ToShortDateString()</a></small>
+                        </div>
+
+                    </div>
+
+                    <div class="single-post-media">
+                        <img src="~/Resimler/@Model.NewsDetail.ImagePath" alt="" class="img-fluid">
+                    </div>
+
+                    <div class="blog-content">
+                        <div class="pp">
+                            <p>
+                                @Model.NewsDetail.Body
+                            </p>
+                        </div>
+                    </div>
+                    <hr class="invis1">
+                    <div class="custombox clearfix">
+
+                        <h4 class="small-title">@Model.Comments.Count Yorum</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div name="comments" class="comments-list">
+                                    @foreach (var comment in Model.Comments)
+                                    {
+                                        <div class="media">
+                                            <a class="media-left" href="#">
+                                                <img src="~/haber/upload/author.jpg" alt="" class="rounded-circle">
+                                            </a>
+                                            <div class="media-body">
+                                                <h4 class="media-heading user_name">@comment.UserName</h4>
+                                                <p>@comment.UserComment</p>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="invis1">
+
+                    <div class="custombox clearfix">
+                        <h4 class="small-title">Yorum Yap</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form name="commentForm" class="form-wrapper" method="post" onsubmit="return false;" asp-controller="Comment" asp-action="Comment">
+                                    <input name="id" type="hidden" asp-for="NewsDetail.Id" />
+                                    <input name="userName" asp-for="Comment.UserName" type="text" class="form-control" placeholder="Kullanıcı adı">
+                                    <textarea name="comment" asp-for="Comment.UserComment" class="form-control" placeholder="Yorum yaz"></textarea>
+                                    <button type="submit" class="btn btn-primary">Yorum yap</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <div class="sidebar">
+                    <div class="widget">
+                        <h2 class="widget-title">Benzer Yazılar</h2>
+                        <div class="trend-videos">
+                            @foreach (var category in Model.Categories)
+                            {
+                                <div class="blog-box">
+                                    <div class="post-media">
+                                        <a href="tech-single.html" title="">
+                                            <img src="~/Resimler/@category.ImagePath" alt="" class="img-fluid">
+                                        </a>
+                                    </div>
+                                    <div class="blog-meta">
+                                        <h4><a asp-controller="Home" asp-action="Detail" asp-route-id="@category.Id" title="">@category.Title</a></h4>
+                                    </div>
+                                </div>
+                                <hr class="invis">
+                            }
+                        </div>
+                    </div>
+                    <div class="widget">
+                        <div class="banner-spot clearfix">
+                            <div class="banner-img">
+                                <img src="~/haber/upload/banner_03.jpg" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+    let commentForm = document.getElementsByName("commentForm")[0];
+    commentForm.addEventListener("submit", (e) => {
+
+        e.preventDefault();
+
+        let comment = {
+            newsId: commentForm.id.value,
+            userName: commentForm.userName.value,
+            userComment: commentForm.comment.value
+        }
+        let http = new XMLHttpRequest();
+        http.open("POST", `/Comment/Comment?newsId=${comment.newsId}&userName=${comment.userName}&userComment=${comment.userComment}`, true);
+
+        http.onloadend = function () {
+            let data = JSON.parse(this.responseText);
+            console.log(data);
+            let html = `<div class="media">
+                           <a class="media-left" href="#">
+                              <img src="~/haber/upload/author.jpg" alt="" class="rounded-circle">
+                           </a>
+                               <div class="media-body">
+                                  <h4 class="media-heading user_name">${data.userName}</h4>
+                                  <p>${data.userComment}</p>
+                            </div>
+                         </div>`
+            document.getElementsByName("comments")[0].innerHTML += html;
+            comment.userName.value = "";
+            comment.userComment.value = "";
+        }
+        http.send();
+    })
+
+</script>

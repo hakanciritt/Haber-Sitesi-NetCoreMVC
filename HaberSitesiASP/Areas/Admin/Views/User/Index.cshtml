@@ -1,0 +1,51 @@
+﻿@model IEnumerable<User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<a href="/Admin/User/Add" class="btn btn-success">Yeni Kullanıcı</a>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Kullanıcı Adı </th>
+            <th>Şifre</th>
+            <th>Güncelle | Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.UserName</td>
+                <td>@item.Password</td>
+                <td>
+                    <a href="/Admin/User/Update/@item.Id" class="btn btn-warning">Güncelle</a>
+                    <a href="/Admin/User/Delete/@item.Id" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    
+        $.ajax({
+            type: "POST",
+            url: "/Admin/User/Sil",
+            data:
+                success: function(data) {
+                    console.log(data);
+                },
+            error: function (err) {
+                consoel.log(err.responseText);
+            }
+        }).done(function () {
+            console.log("ajax işlemi tamamlandı");
+        })
+    
+</script>

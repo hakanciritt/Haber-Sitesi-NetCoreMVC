@@ -1,0 +1,143 @@
+﻿@model NewsListViewModel
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="section first-section">
+    <div class="container-fluid">
+        <div class="masonry-blog clearfix">
+            <div class="first-slot">
+                <div class="masonry-box post-media">
+                    @{
+                        var news = Model.News.First();
+                    }
+                    <img src="~/Resimler/@news.ImagePath" alt="" class="img-fluid">
+                    <div class="shadoweffect">
+                        <div class="shadow-desc">
+                            <div class="blog-meta">
+                                <span class="bg-orange"><a asp-controller="Home" asp-action="Detail" asp-route-id="@news.Id" title="">@news.CategoryName</a></span>
+                                <h4><a asp-controller="Home" asp-action="Detail" asp-route-id="@news.Id" title="">@news.Title</a></h4>
+                                <small><a asp-controller="Home" asp-action="Detail" asp-route-id="@news.Id" title="">@news.Date.ToShortDateString()</a></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @foreach (var item in Model.News.OrderByDescending(x => x.Id).Take(4))
+            {
+                <div class="second-slot">
+                    <div class="masonry-box post-media">
+                        <img src="~/Resimler/@item.ImagePath" alt="Resim bulunmadı" class="img-fluid">
+                        <div class="shadoweffect">
+                            <div class="shadow-desc">
+                                <div class="blog-meta">
+                                    <span class="bg-orange"><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">@item.CategoryName</a></span>
+                                    <h4><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id" title="">@item.Title</a></h4>
+                                    <small><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id" title="">@item.Date.ToShortDateString()</a></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-wrapper">
+                    <div class="blog-top clearfix">
+                        <h4 class="pull-left">Son Haberler <a href="#"><i class="fa fa-rss"></i></a></h4>
+                    </div><!-- end blog-top -->
+
+                    <div class="blog-list clearfix">
+                        @foreach (var item in Model.News.OrderByDescending(x => x.Id))
+                        {
+                            <div class="blog-box row">
+                                <div class="col-md-4">
+                                    <div class="post-media">
+                                        <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id" title="">
+                                            <img src="~/Resimler/@item.ImagePath" alt="" class="img-fluid">
+                                            <div class="hovereffect"></div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-meta big-meta col-md-8">
+                                    <h4><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id" title="">@item.Title</a></h4>
+                                    <p>@item.Body.Substring(0, 200)</p>
+                                    <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title="">@item.CategoryName</a></small>
+                                    <small><a href="tech-single.html" title="">@item.Date.ToShortDateString()</a></small>
+                                </div>
+                            </div>
+                            <hr class="invis">
+                        }
+                        <div class="row">
+                            <div class="col-lg-10 offset-lg-1">
+                                <h3>Reklam</h3>
+                                <div class="banner-spot clearfix">
+                                    <div class="banner-img">
+                                        <img src="~/haber/upload/banner_02.jpg" alt="" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="invis">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-start">
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <div class="sidebar">
+
+                    <div class="widget">
+                        <h2 class="widget-title">Kategoriler</h2>
+                        <div class="blog-list-widget">
+                            <div class="list-group">
+                                @foreach (var category in Model.Categories)
+                                {
+                                    <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="w-100 justify-content-between">
+                                            <h5 class="mb-1">@category.Name</h5>
+                                        </div>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="widget">
+                        <h3>Reklam Alanları</h3>
+                        <div class="banner-spot clearfix">
+                            <div class="banner-img">
+                                <img src="~/haber/upload/banner_03.jpg" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ 

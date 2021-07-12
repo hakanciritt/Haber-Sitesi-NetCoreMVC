@@ -1,0 +1,52 @@
+﻿@model New
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Haber Güncelle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" action="/Admin/Home/Update" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" value="Id" />
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label">Kategori</label>
+                <select asp-for="CategoryId" class="form-control">
+                    <option selected>Kategori Seçiniz</option>
+                    <option value="1">Spor</option>
+                    <option value="2">Ekonomi</option>
+                    <option value="3">İş</option>
+                    <option value="4">Teknoloji</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label">Başlık</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label">Tarih</label>
+                <input asp-for="Date" type="date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImagePath" class="control-label">Resim</label>
+                <input name="file" asp-for="ImagePath" type="file" class="form-control-file" />
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Body" class="control-label">İçerik</label>
+                <textarea asp-for="Body" cols="30" rows="10" class="form-control"></textarea>
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Güncelle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
