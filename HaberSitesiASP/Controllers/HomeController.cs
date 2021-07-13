@@ -12,7 +12,6 @@ namespace HaberSitesiASP.Controllers
         NewsRepository _newsRepo = new();
         CategoryRepository _categoryRepo = new();
         CommentRepository _commentRepo = new();
-
         public IActionResult Index()
         {
             NewsListViewModel model = new NewsListViewModel()

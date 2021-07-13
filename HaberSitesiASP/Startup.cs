@@ -1,5 +1,6 @@
 using FluentValidation.AspNetCore;
 using HaberSitesiASP.EntityFramework;
+using HaberSitesiASP.Helpers;
 using HaberSitesiASP.Mapper.AutoMapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +33,7 @@ namespace HaberSitesiASP
             {
                 mapper.AddProfile<MappingProfile>();
             });
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {

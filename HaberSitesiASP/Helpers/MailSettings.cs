@@ -1,8 +1,4 @@
-﻿using HaberSitesiASP.Models;
-using MailKit.Net.Smtp;
-using MimeKit;
-using MimeKit.Text;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,26 +7,7 @@ namespace HaberSitesiASP.Helpers
 {
     public class MailSettings
     {
-        public static async void SmtpMailSendAsync(MimeMessage message)
-        {
-            using (var client = new SmtpClient())
-            {
-                await client.ConnectAsync("smtp.gmail.com", 587, false);
-                await client.AuthenticateAsync("mail", "password");
-                await client.SendAsync(message);
-            }
-        }
-        public static MimeMessage Mail(Mail mail)
-        {
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Haberler", "mail"));
-            message.To.Add(new MailboxAddress(mail.UserName, mail.Email));
-            message.Subject = mail.Subject;
-            message.Body = new TextPart(TextFormat.Html)
-            {
-                Text = $"<span>{mail.Message}</span>",
-            };
-            return message;
-        }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }
