@@ -1,5 +1,6 @@
 ﻿using HaberSitesiASP.Entities;
 using HaberSitesiASP.EntityFramework;
+using HaberSitesiASP.Helpers.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace HaberSitesiASP.Controllers
         CommentRepository _commentRepo = new();
 
         [HttpPost]
+        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
         public JsonResult Comment(Comment comment)
         {
             _commentRepo.Add(comment);

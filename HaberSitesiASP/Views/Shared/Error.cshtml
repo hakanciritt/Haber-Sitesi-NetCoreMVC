@@ -1,0 +1,21 @@
+﻿
+@{
+    Layout = null;
+    var exception = ViewData["Exception"] as Exception;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+
+    </div>
+    <h3>@exception.Message</h3>
+</body>
+</html>

@@ -3,6 +3,7 @@ using HaberSitesiASP.Areas.Admin.Models;
 using HaberSitesiASP.Entities;
 using HaberSitesiASP.EntityFramework;
 using HaberSitesiASP.Helpers;
+using HaberSitesiASP.Helpers.Exceptions;
 using HaberSitesiASP.Validation;
 using HaberSitesiASP.Validation.FluentValidation;
 using Microsoft.AspNetCore.Authorization;
@@ -35,7 +36,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         {
             return View(_newsRepo.GetAll());
         }
-
+        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
         public IActionResult Add()
         {
             var list = new List<SelectListItem>();
@@ -48,6 +49,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
         public IActionResult Add(NewsAddViewModel newsAddViewModel, IFormFile file)
         {
             var result = Validator.Validate(new NewsValidator(), newsAddViewModel);
@@ -81,6 +83,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
         public IActionResult Update(New news, IFormFile file)
         {
             if (file != null)
@@ -94,6 +97,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
         public JsonResult Delete(int id)
         {
             string path = _env.WebRootPath + "\\Resimler\\";

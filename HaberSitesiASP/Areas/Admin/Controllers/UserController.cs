@@ -1,5 +1,6 @@
 ﻿using HaberSitesiASP.Entities;
 using HaberSitesiASP.EntityFramework;
+using HaberSitesiASP.Helpers.Exceptions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -28,24 +29,26 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
         public IActionResult Add(User user)
         {
             _userRepo.Add(user);
             return Redirect("/Admin/User/Index");
         }
-
+        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
         public IActionResult Update(int id)
         {
             return View(_userRepo.Get(x => x.Id == id));
         }
 
         [HttpPost]
+        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
         public IActionResult Update(User user)
         {
             _userRepo.Update(user);
             return Redirect("/Admin/User/Index");
         }
-
+        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
         public IActionResult Delete(int id)
         {
             var findUser = _userRepo.Get(x => x.Id == id);

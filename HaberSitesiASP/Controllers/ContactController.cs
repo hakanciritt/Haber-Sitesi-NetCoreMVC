@@ -2,6 +2,7 @@
 using System;
 using HaberSitesiASP.Models;
 using HaberSitesiASP.Helpers;
+using HaberSitesiASP.Helpers.Exceptions;
 
 namespace HaberSitesiASP.Controllers
 {

@@ -1,5 +1,6 @@
 ﻿using HaberSitesiASP.Entities;
 using HaberSitesiASP.EntityFramework;
+using HaberSitesiASP.Helpers.Exceptions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,6 +22,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
         public async Task<IActionResult> Login(User user)
         {
             var findUser = _userRepo.Get(x => x.UserName == user.UserName && x.Password == user.Password);
