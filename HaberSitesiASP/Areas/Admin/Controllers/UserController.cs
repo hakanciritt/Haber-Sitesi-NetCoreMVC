@@ -29,26 +29,26 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public IActionResult Add(User user)
         {
             _userRepo.Add(user);
             return Redirect("/Admin/User/Index");
         }
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public IActionResult Update(int id)
         {
             return View(_userRepo.Get(x => x.Id == id));
         }
 
         [HttpPost]
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public IActionResult Update(User user)
         {
             _userRepo.Update(user);
             return Redirect("/Admin/User/Index");
         }
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public IActionResult Delete(int id)
         {
             var findUser = _userRepo.Get(x => x.Id == id);

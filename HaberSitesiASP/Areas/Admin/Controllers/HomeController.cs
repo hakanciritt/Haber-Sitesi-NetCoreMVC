@@ -31,12 +31,11 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
             _env = environment;
             _mapper = mapper;
         }
-
         public IActionResult Index()
         {
             return View(_newsRepo.GetAll());
         }
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public IActionResult Add()
         {
             var list = new List<SelectListItem>();
@@ -49,7 +48,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public IActionResult Add(NewsAddViewModel newsAddViewModel, IFormFile file)
         {
             var result = Validator.Validate(new NewsValidator(), newsAddViewModel);
@@ -83,7 +82,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public IActionResult Update(New news, IFormFile file)
         {
             if (file != null)
@@ -97,7 +96,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public JsonResult Delete(int id)
         {
             string path = _env.WebRootPath + "\\Resimler\\";

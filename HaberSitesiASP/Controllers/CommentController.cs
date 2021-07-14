@@ -15,7 +15,7 @@ namespace HaberSitesiASP.Controllers
         CommentRepository _commentRepo = new();
 
         [HttpPost]
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public JsonResult Comment(Comment comment)
         {
             _commentRepo.Add(comment);

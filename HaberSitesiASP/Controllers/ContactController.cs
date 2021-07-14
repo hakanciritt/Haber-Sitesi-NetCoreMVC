@@ -15,7 +15,7 @@ namespace HaberSitesiASP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public IActionResult Index(Mail mail)
         {
             var message = MailSender.Mail(mail);

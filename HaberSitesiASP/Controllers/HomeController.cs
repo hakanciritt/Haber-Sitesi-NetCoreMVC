@@ -23,7 +23,6 @@ namespace HaberSitesiASP.Controllers
 
             return View(model);
         }
-
         public IActionResult Detail(int id)
         {
             DetailListViewModel model = new DetailListViewModel();

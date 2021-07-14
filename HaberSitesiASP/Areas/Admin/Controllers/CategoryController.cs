@@ -28,7 +28,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         {
             return View(_categoryRepo.GetAll());
         }
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public IActionResult Update(int id)
         {
             var findCategory = _categoryRepo.Get(x => x.Id == id);
@@ -37,7 +37,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public IActionResult Update(CategoryUpdateViewModel categoryUpdateViewModel)
         {
             var result = Validator.Validate(new CategoryUpdateValidator(), categoryUpdateViewModel);
@@ -55,7 +55,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
             return Redirect("/Admin/Category/Index");
         }
         [HttpPost]
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public JsonResult Delete(int id)
         {
             var findCategory = _categoryRepo.Get(x => x.Id == id);
@@ -69,7 +69,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public IActionResult Add(CategoryAddViewModel categoryAddViewModel)
         {
             var result = Validator.Validate(new CategoryValidator(), categoryAddViewModel);

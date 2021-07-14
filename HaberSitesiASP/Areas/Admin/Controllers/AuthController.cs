@@ -22,7 +22,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [TypeFilter(typeof(CustomExceptionFilterAttribute))]
+        [CustomExceptionFilter]
         public async Task<IActionResult> Login(User user)
         {
             var findUser = _userRepo.Get(x => x.UserName == user.UserName && x.Password == user.Password);

@@ -15,6 +15,8 @@ namespace HaberSitesiASP.Helpers.Exceptions
     {
         IWebHostEnvironment _environment;
         IModelMetadataProvider _modelMetadataProvider;
+        public CustomExceptionFilterAttribute() { }
+
         public CustomExceptionFilterAttribute(IWebHostEnvironment environment, IModelMetadataProvider provider)
         {
             _environment = environment;
