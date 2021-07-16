@@ -32,7 +32,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
                 var claims = new List<Claim>
                {
                    new Claim(ClaimTypes.NameIdentifier,user.UserName),
-                   new Claim("password",user.Password)
+                   new Claim("password",user.Password),
                };
                 var userIdentity = new ClaimsIdentity(claims, "Login");
                 var claimsPrincipal = new ClaimsPrincipal(userIdentity);
