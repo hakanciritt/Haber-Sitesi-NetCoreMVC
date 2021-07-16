@@ -1,4 +1,5 @@
-﻿
+﻿@model List<Category>
+
 @{
     Layout = null;
 }
@@ -28,10 +29,10 @@
                     <h2 class="widget-title">Popüler Kategoriler</h2>
                     <div class="link-widget">
                         <ul>
-                            <li><a href="#">Spor</a></li>
-                            <li><a href="#">İş</a></li>
-                            <li><a href="#">Ekonomi</a></li>
-                            <li><a href="#">Teknoloji </a> </li>
+                            @foreach (var category in Model.Take(5))
+                            {
+                                <li><a title="@category.Description" asp-controller="Home" asp-action="Category" asp-route-id="@category.Id">@category.Name</a></li>
+                            }
                         </ul>
                     </div>
                 </div>

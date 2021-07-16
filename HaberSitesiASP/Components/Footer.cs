@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HaberSitesiASP.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,12 @@ namespace HaberSitesiASP.Components
 {
     public class Footer : ViewComponent
     {
+        CategoryRepository _categoryRepo = new();
+
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View();
+            var model = _categoryRepo.GetAll();
+            return View(model);
         }
     }
 }
