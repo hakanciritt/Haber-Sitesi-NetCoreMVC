@@ -25,9 +25,8 @@ namespace HaberSitesiASP.Helpers.Exceptions
         public override void OnException(ExceptionContext context)
         {
             if (_environment.IsDevelopment())
-            {
                 return;
-            }
+
             context.ExceptionHandled = true;
             var errorFolderPath = Path.Combine(_environment.WebRootPath, "ErrorLogs");
 
@@ -45,6 +44,15 @@ namespace HaberSitesiASP.Helpers.Exceptions
             stringBuilder.AppendLine("StackTrace----\n" + context.Exception.StackTrace);
             stringBuilder.AppendLine("TargetSite----\n" + context.Exception.TargetSite);
 
+            FileLog(filePath, stringBuilder, context);
+
+            var result = new ViewResult { ViewName = "Error" };
+            result.ViewData = new ViewDataDictionary(_modelMetadataProvider, context.ModelState);
+            result.ViewData.Add("Exception", context.Exception);
+            context.Result = result;
+        }
+        private void FileLog(string filePath, Object obje, ExceptionContext context)
+        {
             if (!File.Exists(filePath))
             {
                 using (var writer = File.CreateText(filePath))
@@ -54,7 +62,7 @@ namespace HaberSitesiASP.Helpers.Exceptions
                     writer.WriteLine($"ControllerName : {controllerName}");
                     writer.WriteLine($"ActionName : {actionName}");
                     writer.WriteLine("Exception");
-                    writer.WriteLine(stringBuilder);
+                    writer.WriteLine(obje);
                     writer.WriteLine("---------------------------------------------------------------------------------------------------------------------");
                 }
             }
@@ -67,14 +75,10 @@ namespace HaberSitesiASP.Helpers.Exceptions
                     writer.WriteLine($"ControllerName : {controllerName}");
                     writer.WriteLine($"ActionName : {actionName}");
                     writer.WriteLine("Exception");
-                    writer.WriteLine(stringBuilder);
+                    writer.WriteLine(obje);
                     writer.WriteLine("--------------------------------------------------------------------------------------------------------------------");
                 }
             }
-            var result = new ViewResult { ViewName = "Error" };
-            result.ViewData = new ViewDataDictionary(_modelMetadataProvider, context.ModelState);
-            result.ViewData.Add("Exception", context.Exception);
-            context.Result = result;
         }
     }
 }
