@@ -1,9 +1,7 @@
 ﻿using HaberSitesiASP.EntityFramework;
-using HaberSitesiASP.Helpers.Exceptions;
 using HaberSitesiASP.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace HaberSitesiASP.Controllers
