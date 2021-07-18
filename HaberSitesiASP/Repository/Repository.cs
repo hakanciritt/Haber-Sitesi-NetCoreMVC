@@ -1,4 +1,5 @@
-﻿using HaberSitesiASP.EntityFramework;
+﻿using HaberSitesiASP.Abstract;
+using HaberSitesiASP.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HaberSitesiASP.Repository
 {
-    public class Repository<T> where T : class, new()
+    public class Repository<T> where T : class, IEntity, new()
     {
         protected NewsContext _context;
         public Repository()

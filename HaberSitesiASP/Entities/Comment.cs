@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using HaberSitesiASP.Abstract;
+using System;
 
 namespace HaberSitesiASP.Entities
 {
-    public class Comment
+    public class Comment: IEntity
     {
         public int Id { get; set; }
         public string UserName { get; set; }

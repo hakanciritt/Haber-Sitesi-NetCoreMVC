@@ -2,7 +2,6 @@
 using HaberSitesiASP.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Threading.Tasks;
 
 namespace HaberSitesiASP.Controllers
 {

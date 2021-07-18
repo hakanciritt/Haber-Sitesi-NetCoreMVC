@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using HaberSitesiASP.Abstract;
+using System;
 
 namespace HaberSitesiASP.Entities
 {
-    public class User
+    public class User : IEntity
     {
         public int Id { get; set; }
         public string UserName { get; set; }

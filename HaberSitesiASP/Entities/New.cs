@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using HaberSitesiASP.Abstract;
+using System;
 
 namespace HaberSitesiASP.Entities
 {
-    public class New
+    public class New : IEntity
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
