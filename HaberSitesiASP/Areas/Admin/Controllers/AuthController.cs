@@ -1,6 +1,8 @@
 ﻿using HaberSitesiASP.Entities;
 using HaberSitesiASP.EntityFramework;
 using HaberSitesiASP.Helpers.Exceptions;
+using HaberSitesiASP.Validation;
+using HaberSitesiASP.Validation.FluentValidation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -25,6 +27,15 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         [CustomExceptionFilter]
         public async Task<IActionResult> Login(User user)
         {
+            var result = Validator.Validate(new UserValidator(), user);
+            if (result != null)
+            {
+                result.ForEach(error =>
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                });
+                return View(user);
+            }
             var findUser = _userRepo.Get(x => x.UserName == user.UserName && x.Password == user.Password);
 
             if (findUser != null)
