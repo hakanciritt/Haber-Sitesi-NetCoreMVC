@@ -10,7 +10,7 @@
             <div class="first-slot">
                 <div class="masonry-box post-media">
                     @{
-                        var news = Model.News.First();
+                        var news = Model.News.Last();
                     }
                     <img src="~/Resimler/@news.ImagePath" alt="" class="img-fluid">
                     <div class="shadoweffect">

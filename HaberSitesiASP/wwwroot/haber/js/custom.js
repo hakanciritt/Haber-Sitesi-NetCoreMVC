@@ -1,9 +1,4 @@
-/**************************************
-    File Name: custom.js
-    Template Name: Tech Blog
-    Created By: HTML.Design
-    http://themeforest.net/user/wpdestek
-**************************************/
+
 
 (function($) {
     "use strict";

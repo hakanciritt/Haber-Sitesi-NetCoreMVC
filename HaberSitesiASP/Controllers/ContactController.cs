@@ -3,6 +3,7 @@ using System;
 using HaberSitesiASP.Models;
 using HaberSitesiASP.Helpers;
 using HaberSitesiASP.Helpers.Exceptions;
+using System.Threading.Tasks;
 
 namespace HaberSitesiASP.Controllers
 {
@@ -16,7 +17,7 @@ namespace HaberSitesiASP.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomExceptionFilter]
-        public IActionResult Index(Mail mail)
+        public async Task<IActionResult> Index(Mail mail)
         {
             var message = MailSender.Mail(mail);
             MailSender.SmtpMailSendAsync(message);

@@ -14,7 +14,7 @@ namespace HaberSitesiASP.TagHelpers
         {
             
             output.Content.SetHtmlContent(
-                   $"<button class='{Class}'>{Value}</button>"
+                   $"<button type='submit' class='{Class}'>{Value}</button>"
                   );
 
         }

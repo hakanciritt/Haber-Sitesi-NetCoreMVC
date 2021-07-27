@@ -20,7 +20,11 @@
                         <h3>@Model.NewsDetail.Title</h3>
 
                         <div class="blog-meta big-meta">
-                            <small><a href="tech-single.html" title="">@Model.NewsDetail.Date.ToShortDateString()</a></small>
+                            <small>
+                                <span>
+                                    @Model.NewsDetail.Date.ToShortDateString()
+                                </span>
+                            </small>
                         </div>
 
                     </div>

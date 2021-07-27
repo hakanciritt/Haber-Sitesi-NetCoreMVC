@@ -1,13 +1,8 @@
-﻿using AutoMapper.Configuration;
-using HaberSitesiASP.Models;
+﻿using HaberSitesiASP.Models;
 using MailKit.Net.Smtp;
-using Microsoft.Extensions.Options;
 using MimeKit;
 using MimeKit.Text;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HaberSitesiASP.Helpers
 {
