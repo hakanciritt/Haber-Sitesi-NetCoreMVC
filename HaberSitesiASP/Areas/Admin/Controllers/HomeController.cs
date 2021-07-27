@@ -89,7 +89,7 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
                 var filePath = FileHelper.Save(path, file);
                 news.ImagePath = filePath;
             }
-            
+
             _newsRepo.Update(news);
             return Redirect("/Admin/Home/Index");
         }

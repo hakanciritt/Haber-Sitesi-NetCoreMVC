@@ -28,7 +28,7 @@
                 <td>
                     <img width="150" height="150" src="/Resimler/@haber.ImagePath" alt="Resim Bulunamadı" />
                 </td>
-                <td>@haber.Date</td>
+                <td>@haber.Date.ToShortDateString()</td>
                 <td>@haber.Body.Substring(0, 100)</td>
                 <td style="display:flex;flex-direction:row;justify-content:space-between;">
                     <a href="/Admin/Home/Update/@haber.Id" class="btn btn-outline-warning mx-2">Güncelle</a>

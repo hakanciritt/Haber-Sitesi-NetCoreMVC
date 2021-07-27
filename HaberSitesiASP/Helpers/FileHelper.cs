@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace HaberSitesiASP.Helpers
 {
-    public class FileHelper
+    public static class FileHelper
     {
         public static string Save(string path, IFormFile file)
         {
