@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HaberSitesiASP.Areas.Admin.Controllers
 {
@@ -36,12 +37,12 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
         [CustomExceptionFilter]
         public IActionResult Add()
         {
-            var list = new List<SelectListItem>();
-            foreach (var item in _categoryRepo.GetAll())
-            {
-                list.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
-            }
-            ViewBag.list = list;
+            ViewBag.list = (from x in _categoryRepo.GetAll()
+                            select new SelectListItem
+                            {
+                                Text = x.Name.ToString(),
+                                Value = x.Id.ToString()
+                            }).ToList();
             return View(new NewsAddViewModel());
         }
 
@@ -69,13 +70,13 @@ namespace HaberSitesiASP.Areas.Admin.Controllers
 
         public IActionResult Update(int id)
         {
-            var list = new List<SelectListItem>();
-            foreach (var item in _categoryRepo.GetAll())
-            {
-                list.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
-            }
 
-            ViewBag.list = list;
+            ViewBag.list = (from x in _categoryRepo.GetAll()
+                            select new SelectListItem
+                            {
+                                Text = x.Name.ToString(),
+                                Value = x.Id.ToString()
+                            }).ToList();
             return View(_newsRepo.Get(x => x.Id == id));
         }
 

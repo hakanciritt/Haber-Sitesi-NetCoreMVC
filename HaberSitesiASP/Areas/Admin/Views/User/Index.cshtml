@@ -32,20 +32,3 @@
         }
     </tbody>
 </table>
-<script>
-    
-        $.ajax({
-            type: "POST",
-            url: "/Admin/User/Sil",
-            data:
-                success: function(data) {
-                    console.log(data);
-                },
-            error: function (err) {
-                consoel.log(err.responseText);
-            }
-        }).done(function () {
-            console.log("ajax işlemi tamamlandı");
-        })
-    
-</script>
