@@ -1,7 +1,9 @@
 ﻿using HaberSitesiASP.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +13,12 @@ namespace HaberSitesiASP.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"server = DESKTOP-MCV13KF\SQLEXPRESS;database=NewsDb;Integrated security=true;");
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+            var configuration = builder.Build();
+
+            optionsBuilder.UseSqlServer(configuration["ConnectionStrings:Connection"]);
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
