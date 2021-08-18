@@ -24,23 +24,26 @@
                     </div>
                 </div>
             </div>
-            @foreach (var item in Model.News.OrderByDescending(x => x.Id).Take(4))
-            {
-                <div class="second-slot">
-                    <div class="masonry-box post-media">
-                        <img src="~/Resimler/@item.ImagePath" alt="Resim bulunmadı" class="img-fluid">
-                        <div class="shadoweffect">
-                            <div class="shadow-desc">
-                                <div class="blog-meta">
-                                    <span class="bg-orange"><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">@item.CategoryName</a></span>
-                                    <h4><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id" title="">@item.Title</a></h4>
-                                    <small><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id" title="">@item.Date.ToShortDateString()</a></small>
+            <div>
+
+                @foreach (var item in Model.News.OrderByDescending(x => x.Id).Take(4))
+                {
+                    <div class="second-slot">
+                        <div class="masonry-box post-media">
+                            <img style="width:367px;height:204px;" src="~/Resimler/@item.ImagePath" alt="Resim bulunmadı" class="img-fluid">
+                            <div class="shadoweffect">
+                                <div class="shadow-desc">
+                                    <div class="blog-meta">
+                                        <span class="bg-orange"><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">@item.CategoryName</a></span>
+                                        <h4><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id" title="">@item.Title</a></h4>
+                                        <small><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id" title="">@item.Date.ToShortDateString()</a></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
 </section>
@@ -125,7 +128,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
                     <div class="widget">
                         <h3>Reklam Alanları</h3>
@@ -140,4 +143,3 @@
         </div>
     </div>
 </section>
- 
